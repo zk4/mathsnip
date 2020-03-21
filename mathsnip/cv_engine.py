@@ -149,7 +149,7 @@ if __name__ == "__main__":
             topWindow(str(os.getpid()))
             # os.system("./top.sh "+str(os.getpid()))
 
-        key = cv2.waitKey(300) & 0xFF
+        key = cv2.waitKey(1000) & 0xFF
         if key == ord("r"):
             image = clone.copy()
         elif key == ord("c") or key == 27:
