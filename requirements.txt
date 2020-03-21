@@ -1,3 +1,8 @@
-setuptools==40.6.3
+numpy==1.15.4
+requests==2.23.0
 pytest==5.2.1
+opencv_contrib_python==4.1.0.25
+setuptools==40.6.3
+pynput==1.4.4
+Pillow==7.0.0
 PyYAML==5.3.1
