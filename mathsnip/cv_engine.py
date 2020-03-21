@@ -32,7 +32,7 @@ def topWindow(pid):
      end tell' '''
     os.system(cmd)
 
-def latex(args, headers, timeout=3):
+def latex(args, headers, timeout=10):
     r = requests.post(service,
         data=json.dumps(args), headers=headers, timeout=timeout)
     return json.loads(r.text)
@@ -49,8 +49,8 @@ def ocr(cropped_image_path):
             'formats': ['latex_simplified']
         },
         {
-            'app_id': tokenDict["app_id"] ,
-            'app_key': tokenDict["app_key"],
+            'app_id': tokenDict.get( "app_id",os.environ.get("MATHPIX_APP_ID","") ) ,
+            'app_key': tokenDict.get( "app_key",os.environ.get("MATHPIX_APP_KEY","")  ),
             'Content-type': 'application/json'
         }
     )
@@ -59,9 +59,10 @@ def ocr(cropped_image_path):
         cmd = f"pbcopy <<< '${latex_str}$'"
         os.system(cmd)
         accurate_rate = str(result["latex_confidence_rate"])
-
+        notify("done","accuracy:"+accurate_rate)
     else:
-        print("can`t find any latex")
+        notify("failed: can`t find any latex")
+
 
 def shape_selection(event, x, y, flags, param):
     global ref_point, crop,drawing,image,done
@@ -77,9 +78,11 @@ def shape_selection(event, x, y, flags, param):
         ref_point[1]=(x, y)
 
         cv2.rectangle(image, ref_point[0], ref_point[1], (0, 0, 255), 1)
+
         x = ref_point[0][0]
-        w = ref_point[1][0] - ref_point[0][0]
         y = ref_point[0][1]
+
+        w = ref_point[1][0] - ref_point[0][0]
         h = ref_point[1][1] - ref_point[0][1]
         
         if w>0 and h>0:
@@ -108,8 +111,8 @@ def cancel():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser( formatter_class=argparse.ArgumentDefaultsHelpFormatter, description="")
-    parser.add_argument('-i', '--app_id', help='app id',required=True,type=str)  
-    parser.add_argument('-k', '--app_key', help='app key', required=True,type=str) 
+    parser.add_argument('-i', '--app_id', help='app id',required=False,type=str)  
+    parser.add_argument('-k', '--app_key', help='app key', required=False,type=str) 
     mainArgs=parser.parse_args()
     tokenDict["app_id"]=mainArgs.app_id
     tokenDict["app_key"]=mainArgs.app_key
