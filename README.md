@@ -19,4 +19,5 @@ wait untill you see
 ![Image](assets/2020-03-21-22-19-17.png)
 
 press `cmd+shift+e` to clip the screen. 
+
 ![Image](assets/2020-03-21-22-23-58.gif)
