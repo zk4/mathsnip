@@ -78,12 +78,16 @@ def shape_selection(event, x, y, flags, param):
         ref_point[1]=(x, y)
 
         cv2.rectangle(image, ref_point[0], ref_point[1], (0, 0, 255), 1)
+        p1=ref_point[0]
+        p2=ref_point[1]
+        if p1[0]>p2[0]:
+            p1,p2=p2,p1
 
-        x = ref_point[0][0]
-        y = ref_point[0][1]
+        x = p1[0]
+        y = p1[1]
 
-        w = ref_point[1][0] - ref_point[0][0]
-        h = ref_point[1][1] - ref_point[0][1]
+        w = p2[0] - p1[0]
+        h = p2[1] - p1[1]
         
         if w>0 and h>0:
             cropped_image = image[y:y+h, x:x+w]
@@ -139,7 +143,7 @@ if __name__ == "__main__":
             topWindow(str(os.getpid()))
             # os.system("./top.sh "+str(os.getpid()))
 
-        key = cv2.waitKey(1000) & 0xFF
+        key = cv2.waitKey(300) & 0xFF
         if key == ord("r"):
             image = clone.copy()
         elif key == ord("c") or key == 27:
