@@ -23,7 +23,9 @@ key_pressed = []
 service = 'https://api.mathpix.com/v3/latex'
 
 def notify(title="",content=""):
-    os.system("./notify.sh "+" "+title+" "+content)
+    cmd = f'''osascript -e 'display notification "'"{content}"'" with title "'"{title}"'"  ' '''
+
+    os.system(cmd)
 
 def topWindow(pid):
     cmd = f'''osascript -e '
@@ -43,16 +45,20 @@ def base64_img(filename):
 
 
 def ocr(cropped_image_path):
+
     global result
+    headers =         {
+            'app_id': tokenDict.get( "app_id") ,
+            'app_key': tokenDict.get( "app_key") ,
+            'Content-type': 'application/json'
+        }
+    print(headers)
+
     result = latex({
             'src': base64_img(cropped_image_path),
             'formats': ['latex_simplified']
         },
-        {
-            'app_id': tokenDict.get( "app_id",os.environ.get("MATHPIX_APP_ID","") ) ,
-            'app_key': tokenDict.get( "app_key",os.environ.get("MATHPIX_APP_KEY","")  ),
-            'Content-type': 'application/json'
-        }
+        headers
     )
     if 'latex_simplified'  in result:
         latex_str=result['latex_simplified']
@@ -61,7 +67,7 @@ def ocr(cropped_image_path):
         accurate_rate = str(result["latex_confidence_rate"])
         notify("done","accuracy:"+accurate_rate)
     else:
-        notify("failed: can`t find any latex")
+        notify("failed","")
 
 
 def shape_selection(event, x, y, flags, param):

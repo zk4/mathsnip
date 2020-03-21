@@ -43,6 +43,9 @@ def monitorKey():
 
 
 def main(args):
+    if os.geteuid()!=0:
+        print("Must run with root permission!\ntry: sudo mathsnip -i <app_id> -k <app_key>")
+        return
     # why call like this instread call as moudle? 
     # both cv and key monitor need mainthread to perform , and both of them needs block somehow. so..
     cdir = os.path.dirname(os.path.abspath(__file__))
@@ -53,7 +56,7 @@ def main(args):
     print('monitor end.....')
 
 def entry_point():
-    parser = createParse()
+    parser = createParse() 
     mainArgs=parser.parse_args()
     main(mainArgs)
 
