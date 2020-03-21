@@ -19,6 +19,7 @@ COMBINATIONS = [
     {keyboard.Key.cmd,keyboard.Key.shift, keyboard.KeyCode(char='E')}
 ]
 
+
 def execute():
     with open(os.path.join(os.getenv("HOME"),".mathsnip_keypressed"),"w") as f:
         f.write("")

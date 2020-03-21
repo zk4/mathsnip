@@ -8,6 +8,7 @@ import tempfile
 import base64
 import time
 import requests
+import threading
 import json
 
 # now let's initialize the list of reference point
@@ -24,7 +25,14 @@ service = 'https://api.mathpix.com/v3/latex'
 def notify(title="",content=""):
     os.system("./notify.sh "+" "+title+" "+content)
 
-def latex(args, headers, timeout=30):
+def topWindow(pid):
+    cmd = f'''osascript -e '
+        tell application \"System Events\"
+                set frontmost of the first process whose unix id is "'"{pid}"'" to true
+     end tell' '''
+    os.system(cmd)
+
+def latex(args, headers, timeout=3):
     r = requests.post(service,
         data=json.dumps(args), headers=headers, timeout=timeout)
     return json.loads(r.text)
@@ -32,8 +40,6 @@ def latex(args, headers, timeout=30):
 def base64_img(filename):
     image_data = open(filename, "rb").read()
     return "data:image/jpg;base64," + base64.b64encode(image_data).decode()
-
-
 
 
 def ocr(cropped_image_path):
@@ -81,7 +87,7 @@ def shape_selection(event, x, y, flags, param):
             defult_tmp_dir = tempfile._get_default_tempdir()
             temp_name= os.path.join(defult_tmp_dir,"cropped.jpg")
             cv2.imwrite(temp_name, cropped_image)
-            ocr(temp_name)
+            threading.Thread(target =ocr,args=(temp_name,)).start()
             cv2.resizeWindow(window_name, 0,0)
             key_pressed.clear()
 
@@ -127,7 +133,8 @@ if __name__ == "__main__":
             clone = image.copy()
             cv2.imshow(window_name, image)
             cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-            os.system("./top.sh "+str(os.getpid()))
+            topWindow(str(os.getpid()))
+            # os.system("./top.sh "+str(os.getpid()))
 
         key = cv2.waitKey(1000) & 0xFF
         if key == ord("r"):
