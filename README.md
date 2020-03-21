@@ -10,7 +10,7 @@ pip install mathsnip
 
 
 # Usage
-Must use root permission. Because it need to catch the global key.
+Must use root permission. Because it needs to catch the global key.
 ``` bash
 sudo mathsnip -i <app_id> -k <app_key>
 ```
