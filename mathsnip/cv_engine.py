@@ -134,7 +134,7 @@ if __name__ == "__main__":
     cv2.setMouseCallback(window_name, shape_selection)
     cancel()
 
-    notify("'press cmd+shift+e to selection region!'","")
+    notify("'press cmd+shift+e to clip screen region!'","")
     print("cv init done ... press cmd+shift+e to ocr latex picture!")
     key_pressed_file = os.path.join(os.getenv("HOME"),".mathsnip_keypressed")
     while True :
