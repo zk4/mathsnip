@@ -1,0 +1,29 @@
+version: 1
+disable_existing_loggers: true
+
+formatters:
+    standard:
+      # format: '[%(levelname)-8s] %(filename)s:%(lineno)-5s  %(message)s'
+      format: "%(module)s:%(lineno)-4s %(message)s"
+    error:
+        format: "[%(asctime)s]:%(levelname)s <PID %(process)d:%(processName)s> %(name)s.%(funcName)s():\n %(message)s"
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        formatter: standard
+
+    colored:
+        class: mathsnip.logx.ColoredHandler
+
+root:
+    level: DEBUG
+    handlers: [colored,console]
+    propagate: no
+
+loggers:
+    logx:
+        level: DEBUG
+        handlers: [colored,console]
+        propagate: no
+
