@@ -62,7 +62,8 @@ def ocr(cropped_image_path):
     )
     if 'latex_simplified'  in result:
         latex_str=result['latex_simplified']
-        cmd = f"pbcopy <<< '$$\n{latex_str}\n$$'"
+        # cmd = f"pbcopy <<< '$$\n{latex_str}\n$$'"
+        cmd = f"pbcopy <<< '{latex_str}'"
         os.system(cmd)
         accurate_rate = str(result["latex_confidence_rate"])
         notify("done","accuracy:"+accurate_rate)
