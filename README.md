@@ -1,8 +1,9 @@
 # Intro
 mathpix api version
 only Mac support. 
+> if you Mac OS version is bigger than 10.14, you need to grant accessibility to your terminal. 
 
-
+![Image](assets/2020-05-18-10-51-23.png)
 # Install
 ``` bash
 pip install mathsnip
