@@ -6,7 +6,7 @@ only Mac support.
 ![Image](assets/2020-05-18-10-51-23.png)
 # Install
 ``` bash
-pip install mathsnip
+pip3 install mathsnip
 ```
 
 
