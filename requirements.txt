@@ -1,6 +1,6 @@
 numpy==1.15.4
 pytest==5.2.1
-opencv_contrib_python==4.1.0.25
+opencv_contrib_python==4.2.0.32
 requests==2.23.0
 setuptools==40.6.3
 pynput==1.4.4
