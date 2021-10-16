@@ -8,6 +8,7 @@ only Mac support.
 ``` bash
 pip3 install mathsnip
 ```
+ps: you need python@3.8. 
 
 
 # Usage
