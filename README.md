@@ -8,7 +8,7 @@ only Mac support.
 ``` bash
 pip3 install mathsnip
 ```
-ps: you need python@3.8. 
+ps: you need python@3.9. 
 
 
 # Usage
@@ -24,5 +24,5 @@ wait untill you see . it takes about 3 secs for cv to init.
 press `cmd+shift+e` to clip the screen. 
 
 
-
+PS: you should import the old api.
 ![Image](assets/2020-03-21-22-23-58.gif)

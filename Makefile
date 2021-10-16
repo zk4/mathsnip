@@ -84,7 +84,8 @@ source:
 	. venv/bin/activate
 
 auto_version:
-	python version.py
+	# python version.py
+	echo "hello"
 
 key:
 	sudo python3 -m mathsnip -i $(MATHPIX_APP_ID) -k $(MATHPIX_APP_KEY)
