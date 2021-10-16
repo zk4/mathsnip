@@ -35,8 +35,8 @@ def topWindow(pid):
     os.system(cmd)
 
 def latex(args, headers, timeout=10):
-    r = requests.post(service,
-        data=json.dumps(args), headers=headers, timeout=timeout)
+    r = requests.post(service, data=json.dumps(args), headers=headers, timeout=timeout, verify=False)
+    print(r.text)
     return json.loads(r.text)
 
 def base64_img(filename):
