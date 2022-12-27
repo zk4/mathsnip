@@ -1,7 +1,7 @@
 pytest==5.2.1
 opencv_contrib_python==4.4.0.46
 requests==2.23.0
-setuptools==58.2.0
+setuptools==65.5.1
 pynput==1.4.4
 Pillow==7.0.0
 PyYAML==5.3.1
