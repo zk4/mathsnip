@@ -71,8 +71,7 @@ source:
 	. venv/bin/activate
 
 auto_version:
-	# python version.py
-	echo "hello"
+	python version.py
 
 dev:
 	pip install -e .
