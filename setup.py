@@ -17,6 +17,9 @@ __license__ = 'BSD'
 
 if __name__ == '__main__':
     setup(
+        app=["main.py"],
+        options={'py2app': {}},
+        setup_requires=['py2app'],
         # used in pip install and uninstall 
         # pip install mathsnip
         name='mathsnip',
@@ -34,6 +37,7 @@ if __name__ == '__main__':
         packages=find_packages(exclude=['tests', 'tests.*']),
         package_data={'mathsnip.logx': ['logging.yaml']},
         install_requires=open('requirements.txt', 'r').read().strip().split(),
+
         entry_points={
             'console_scripts': [
                 'mathsnip = mathsnip:entry_point'
