@@ -1,5 +1,5 @@
 
-rm: 
+rm:
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
@@ -12,23 +12,10 @@ rm:
 	rm -rf .pytest_cache
 	rm -rf .hypothesis
 	rm -rdf assets
-	
-
-test: rm
-	pytest -s -v  tests/
-
-coverage-html:
-	# --cov where you want to cover
-	#  tests  where your test code is 
-	pytest --cov=mathsnip/ --cov-report=html tests/
-	open htmlcov/index.html
-
-coverage:
-	pytest --cov=mathsnip/ tests/
 
 
 install: uninstall
-	pip3 install . 
+	pip3 install .
 
 uninstall:
 	pip3 uninstall  -y mathsnip
@@ -42,13 +29,13 @@ run:
 wrun:
 	watchexec -ce py 'python3 -m mathsnip eat -c 2'
 
-all: rm uninstall install run 
+all: rm uninstall install run
 
 
 pure-all: env-rm rm env install test run
 
 
-	
+
 upload-to-test: rm freeze
 	python3 setup.py bdist_wheel --universal
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
@@ -72,13 +59,13 @@ freeze-env: auto_version
 env-rm:
 	rm -rdf venv
 
-env-create: 
+env-create:
 	python3 -m venv venv
 
 env: env-create
 	pip3 install -r requirements.txt
 
-source: 
+source:
 	echo "you need to manully source it"
 	echo ". env/bin/activate"
 	. venv/bin/activate
@@ -87,9 +74,9 @@ auto_version:
 	# python version.py
 	echo "hello"
 
+dev:
+	pip install -e .
 key:
-	sudo python3 -m mathsnip -i $(MATHPIX_APP_ID) -k $(MATHPIX_APP_KEY)
+	python3 -m mathsnip
 
-k:
-	sudo python3 -m mathsnip
 

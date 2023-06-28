@@ -1,28 +1,27 @@
-# Intro
-mathpix api version
-only Mac support. 
-> if you Mac OS version is bigger than 10.14, you need to grant accessibility to your terminal. 
+# Demo
 
-![Image](assets/2020-05-18-10-51-23.png)
 # Install
-``` bash
-pip3 install mathsnip
-```
-ps: you need python@3.9. 
 
-
-# Usage
-Must use root permission. Because it needs to catch the global key.
-``` bash
-sudo mathsnip -i <app_id> -k <app_key>
+``` python
+pip install mathsnip
 ```
 
-wait untill you see . it takes about 3 secs for cv to init.
+# Configuration
+put your app_id and app_key in ~/.bash_config
+```
+export MATHPIX_APP_ID="xxx"
+export MATHPIX_APP_KEY="xxx"
+```
 
-![Image](assets/2020-03-21-22-32-28.png)
+where to find the app_id and app_key?
+- open https://accounts.mathpix.com/account
+- click 'OCR API settings'
+- and you should find
 
-press `cmd+shift+e` to clip the screen. 
+# Use
+```
+mathsnip
+```
 
-
-PS: you should import the old api.
-![Image](assets/2020-03-21-22-23-58.gif)
+# Reference
+gui part: https://mgregchi02.medium.com/take-screenshots-of-any-area-of-the-screen-with-python-gui-program-6320110e99f7
