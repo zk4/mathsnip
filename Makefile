@@ -79,3 +79,7 @@ key:
 	python3 -m mathsnip
 
 
+
+gui-dist: rm
+	# https://py2app.readthedocs.io/en/latest/tutorial.html#create-a-setup-py-file
+	python setup.py py2app
