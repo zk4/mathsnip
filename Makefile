@@ -11,7 +11,6 @@ rm:
 	# rm -rf .py.egg-info
 	rm -rf .pytest_cache
 	rm -rf .hypothesis
-	rm -rdf assets
 
 
 install: uninstall
