@@ -20,7 +20,7 @@ layout = [
         [sg.Canvas(size=(1, 1), background_color=None, key= 'canvas')]
         ]
 
-window = sg.Window('Onwa', layout,transparent_color=None,
+window = sg.Window('MathSnip', layout,transparent_color=None,
                    alpha_channel=.5, grab_anywhere = True, resizable = True) # disable_close=True
 window.Finalize()
 
@@ -58,11 +58,11 @@ while True:
     # Learn how many screenshots with the same name
     # Add "1' to the number  then create a new name with it
     # THis is to avoid replacing existing screenshots
-        shots = fnmatch.filter((shot for shot in os.listdir('.')), 'Onwa*.png')
+        shots = fnmatch.filter((shot for shot in os.listdir('.')), 'MathSnip*.png')
         lrn = len(shots)
         lrn = lrn+1
-        img.save('Onwa%s.png'%lrn)
-        latex = ocr('Onwa%s.png'%lrn)
+        img.save('MathSnip%s.png'%lrn)
+        latex = ocr('MathSnip%s.png'%lrn)
         if latex is not None:
             sg.popup_notify('Screenshot saved!',  location=sg.DEFAULT_WINDOW_LOCATION, display_duration_in_ms=6, fade_in_duration=10)
 
