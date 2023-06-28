@@ -36,12 +36,12 @@ pure-all: env-rm rm env install test run
 
 
 
-upload-to-test: rm freeze
+upload-to-test: rm
 	python3 setup.py bdist_wheel --universal
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 
-upload-to-prod: rm freeze
+upload-to-prod: rm
 	python3 setup.py bdist_wheel --universal
 	twine upload dist/*
 
@@ -49,7 +49,7 @@ upload-to-prod: rm freeze
 freeze: auto_version
 	# pipreqs will find the module the project really depneds
 	# Don`t use this !
-	pipreqs . --force
+	# pipreqs . --force
 
 freeze-env: auto_version
 	#  pip3 will find all the module not belong to standard  library
