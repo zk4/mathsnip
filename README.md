@@ -1,5 +1,7 @@
 # Demo
 
+![iShot_2023-06-28_20.53.44](assets/iShot_2023-06-28_20.53.44.gif)
+
 # Install
 
 ``` python
