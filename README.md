@@ -6,6 +6,7 @@
 
 ``` python
 pip install mathsnip
+brew install python-tk@3.10
 ```
 
 # Configuration
